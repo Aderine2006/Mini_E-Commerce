@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 interface RequestOptions extends RequestInit {
     headers?: Record<string, string>;
@@ -13,13 +13,19 @@ async function fetchAPI(endpoint: string, options: RequestOptions = {}) {
         ...options.headers,
     };
 
+    // If body is FormData, let the browser set Content-Type (including boundary)
+    if (options.body instanceof FormData) {
+        // Remove Content-Type so browser sets multipart/form-data
+        delete headers['Content-Type'];
+    }
+
     const config = {
         ...options,
         headers,
     };
 
     try {
-        const response = await fetch(`${API_URL}${endpoint}`, config);
+        const response = await fetch(`${API_URL}${endpoint}`, { ...config, cache: 'no-store' });
 
         // Handle 401 Unauthorized globally if needed (e.g., redirect to login)
         if (response.status === 401) {
@@ -28,10 +34,18 @@ async function fetchAPI(endpoint: string, options: RequestOptions = {}) {
             // Better to handle this in UI or Context, but valid cleanup here.
         }
 
-        const data = await response.json();
+        // Try to parse JSON body; if none, fallback to empty object
+        let data: any = {};
+        try {
+            data = await response.json();
+        } catch (err) {
+            // no JSON body
+            data = {};
+        }
 
         if (!response.ok) {
-            throw new Error(data.message || 'API Error');
+            const errMsg = data?.message || data?.error || response.statusText || 'API Error';
+            throw new Error(errMsg);
         }
 
         return data;
@@ -64,12 +78,16 @@ export const api = {
         getAll: (query?: string) => fetchAPI(`/products${query ? `?search=${encodeURIComponent(query)}` : ''}`),
         getOne: (id: number | string) => fetchAPI(`/products/${id}`),
         // Admin only
-        create: (product: any) =>
-            fetchAPI('/products', { method: 'POST', body: JSON.stringify(product) }),
-        update: (id: number | string, updates: any) =>
-            fetchAPI(`/products/${id}`, { method: 'PUT', body: JSON.stringify(updates) }),
-        delete: (id: number | string) =>
-            fetchAPI(`/products/${id}`, { method: 'DELETE' }),
+        // `product` may be an object (JSON) or a FormData (for file uploads)
+        create: (product: any) => {
+            if (product instanceof FormData) return fetchAPI('/products', { method: 'POST', body: product });
+            return fetchAPI('/products', { method: 'POST', body: JSON.stringify(product) });
+        },
+        update: (id: number | string, updates: any) => {
+            if (updates instanceof FormData) return fetchAPI(`/products/${id}`, { method: 'PUT', body: updates });
+            return fetchAPI(`/products/${id}`, { method: 'PUT', body: JSON.stringify(updates) });
+        },
+        delete: (id: number | string) => fetchAPI(`/products/${id}`, { method: 'DELETE' }),
     },
 
     // Cart

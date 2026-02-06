@@ -1,6 +1,7 @@
 'use client';
 
 import { Product } from '@/types';
+import { API_URL } from '@/lib/api';
 import Link from 'next/link';
 import { ShoppingCart, Loader2 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
@@ -38,17 +39,33 @@ export default function ProductCard({ product }: ProductCardProps) {
             height: '100%'
         }}>
             <div style={{
-                height: '200px',
-                background: 'rgba(255,255,255,0.1)',
+                height: '240px',
+                background: product.images?.[0] ? 'white' : 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
                 borderRadius: 'var(--radius-md)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: '3rem',
-                color: 'var(--text-muted)'
+                fontSize: '4rem',
+                color: 'white',
+                marginBottom: '10px',
+                overflow: 'hidden'
             }}>
-                {/* Placeholder for image */}
-                {product.name.charAt(0)}
+                {product.images?.[0] ? (
+                    (() => {
+                        const src = product.images[0];
+                        const isAbsolute = typeof src === 'string' && (src.startsWith('http') || src.startsWith('data:'));
+                        const url = isAbsolute ? src : `${API_URL}${src.startsWith('/') ? src : `/${src}`}`;
+                        return (
+                            <img
+                                src={url}
+                                alt={product.name}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            />
+                        );
+                    })()
+                ) : (
+                    product.name.charAt(0)
+                )}
             </div>
 
             <div>

@@ -9,8 +9,19 @@ const addSchema = z.object({
   quantity: z.number().int().positive().optional()
 });
 
+function parseNumberMaybe(value) {
+  if (typeof value === 'number') return value;
+  if (typeof value === 'string' && value.trim() !== '') return Number(value);
+  return value;
+}
+
 const add = asyncHandler(async (req, res) => {
-  const parsed = addSchema.safeParse(req.body);
+  const body = {
+    productId: parseNumberMaybe(req.body.productId),
+    quantity: parseNumberMaybe(req.body.quantity)
+  };
+
+  const parsed = addSchema.safeParse(body);
   if (!parsed.success) throw new HttpError(400, "Invalid request body");
 
   await addToCart({ userId: req.user.userId, ...parsed.data });

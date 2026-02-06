@@ -14,13 +14,37 @@ const recommendationRoutes = require("./routes/recommendationRoutes");
 function createApp() {
   const app = express();
 
-  app.use(helmet());
   app.use(morgan("dev"));
   app.use(express.json({ limit: "1mb" }));
 
-  app.get("/health", (req, res) => res.json({ ok: true }));
+  // Simple CORS middleware so browser clients (e.g. localhost:3000)
+  // can call this API without adding the `cors` package.
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    if (req.method === "OPTIONS") {
+      res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+      return res.sendStatus(200);
+    }
+    next();
+  });
 
-  app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+  // Serve static files (before helmet) with proper Content-Type headers
+  app.use("/uploads", express.static(path.join(process.cwd(), "uploads"), {
+    setHeaders: (res, filePath) => {
+      res.setHeader("Cache-Control", "public, max-age=3600");
+    }
+  }));
+
+  // Apply helmet after static files to avoid blocking image requests
+  app.use(helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" }
+  }));
+
+  app.get("/health", (req, res) => res.json({ ok: true }));
 
   app.get("/docs.json", (req, res) => res.json(swaggerSpec));
   app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));

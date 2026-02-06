@@ -39,33 +39,46 @@ export default function Navbar() {
                 </Link>
 
                 {/* Search Bar */}
-                <div style={{ flex: 1, maxWidth: '600px', display: 'flex', borderRadius: '4px', overflow: 'hidden' }}>
+                <div style={{
+                    flex: 1,
+                    maxWidth: '600px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: 'var(--radius-md)',
+                    padding: '2px',
+                    boxShadow: 'var(--shadow-sm)',
+                    transition: 'all 0.3s ease',
+                }}>
                     <select style={{
-                        padding: '0 10px',
-                        background: '#f3f3f3',
-                        border: '1px solid #ccc',
-                        borderRight: 'none',
-                        borderTopLeftRadius: '4px',
-                        borderBottomLeftRadius: '4px',
-                        fontSize: '0.8rem',
+                        padding: '0 15px',
+                        background: 'transparent',
+                        border: 'none',
+                        borderRight: '1px solid var(--border-color)',
+                        borderRadius: '0',
+                        fontSize: '0.9rem',
                         cursor: 'pointer',
-                        outline: 'none',
-                        color: '#555'
+                        fontWeight: 500,
+                        color: 'var(--text-muted)',
+                        width: 'auto',
+                        height: '100%'
                     }}>
                         <option>All</option>
                     </select>
                     <input
                         type="text"
-                        placeholder="Search Product Store"
+                        placeholder="Search for products..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                         style={{
                             flex: 1,
-                            padding: '10px',
-                            border: '1px solid #ccc',
+                            padding: '10px 15px',
+                            border: 'none',
                             outline: 'none',
-                            fontSize: '0.9rem'
+                            fontSize: '0.95rem',
+                            background: 'transparent'
                         }}
                     />
                     <button
@@ -73,12 +86,15 @@ export default function Navbar() {
                         style={{
                             background: 'var(--primary)',
                             border: 'none',
-                            padding: '0 15px',
-                            cursor: 'pointer',
+                            borderRadius: 'calc(var(--radius-md) - 2px)',
+                            width: '40px',
+                            height: '40px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            color: 'white'
+                            color: 'white',
+                            cursor: 'pointer',
+                            marginRight: '2px'
                         }}
                     >
                         <Search size={20} />
@@ -98,17 +114,31 @@ export default function Navbar() {
                     {user ? (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
                             {user.role === 'admin' ? (
-                                <span style={{
-                                    background: 'var(--primary)',
-                                    color: 'white',
-                                    padding: '2px 8px',
-                                    borderRadius: '4px',
-                                    fontSize: '0.7rem',
-                                    fontWeight: 700,
-                                    textTransform: 'uppercase'
-                                }}>
-                                    ADMIN
-                                </span>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <span style={{
+                                        background: 'var(--primary)',
+                                        color: 'white',
+                                        padding: '2px 8px',
+                                        borderRadius: '4px',
+                                        fontSize: '0.7rem',
+                                        fontWeight: 700,
+                                        textTransform: 'uppercase'
+                                    }}>
+                                        ADMIN
+                                    </span>
+                                    <Link href="/admin" className="btn-admin" style={{
+                                        background: 'transparent',
+                                        border: '1px solid var(--primary)',
+                                        color: 'var(--primary)',
+                                        padding: '6px 10px',
+                                        borderRadius: '4px',
+                                        fontSize: '0.8rem',
+                                        fontWeight: 600,
+                                        textDecoration: 'none'
+                                    }}>
+                                        Admin Panel
+                                    </Link>
+                                </div>
                             ) : (
                                 <span style={{
                                     background: 'var(--accent)',

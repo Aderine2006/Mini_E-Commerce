@@ -45,15 +45,6 @@ export default function LoginPage() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            style={{
-                                width: '100%',
-                                padding: '12px',
-                                borderRadius: 'var(--radius-sm)',
-                                border: '1px solid var(--border-color)',
-                                background: 'rgba(255, 255, 255, 0.5)',
-                                outline: 'none',
-                                transition: 'border-color 0.2s'
-                            }}
                             placeholder="admin@example.com"
                         />
                     </div>
@@ -64,14 +55,6 @@ export default function LoginPage() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            style={{
-                                width: '100%',
-                                padding: '12px',
-                                borderRadius: 'var(--radius-sm)',
-                                border: '1px solid var(--border-color)',
-                                background: 'rgba(255, 255, 255, 0.5)',
-                                outline: 'none'
-                            }}
                             placeholder="password123"
                         />
                     </div>

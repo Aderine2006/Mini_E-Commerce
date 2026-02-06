@@ -83,9 +83,14 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     justifyContent: 'center',
                     fontSize: '5rem',
                     color: 'var(--text-muted)',
-                    background: 'rgba(255,255,255,0.2)'
+                    background: product.images?.[0] ? 'white' : 'rgba(255,255,255,0.2)',
+                    overflow: 'hidden'
                 }}>
-                    {product.name.charAt(0)}
+                    {product.images?.[0] ? (
+                        <img src={product.images[0]} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    ) : (
+                        product.name.charAt(0)
+                    )}
                 </div>
 
                 {/* Right: Details */}
