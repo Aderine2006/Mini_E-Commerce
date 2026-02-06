@@ -1,6 +1,7 @@
 .env
 node_modules
 data
+uploads
 package-lock.json
 yarn.lock
 yarn-error.log

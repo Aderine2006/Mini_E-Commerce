@@ -45,10 +45,11 @@ const swaggerSpec = {
           price: { type: "number" },
           category: { type: "string" },
           keywords: { type: "array", items: { type: "string" } },
+          images: { type: "array", items: { type: "string" } },
           createdBy: { type: "integer" },
           createdAt: { type: "string" }
         },
-        required: ["id", "name", "price", "category", "keywords", "createdBy", "createdAt"]
+        required: ["id", "name", "price", "category", "keywords", "images", "createdBy", "createdAt"]
       },
       CartItem: {
         type: "object",
@@ -146,6 +147,25 @@ const swaggerSpec = {
         requestBody: {
           required: true,
           content: {
+            "multipart/form-data": {
+              schema: {
+                type: "object",
+                properties: {
+                  name: { type: "string" },
+                  price: { type: "number" },
+                  category: { type: "string" },
+                  keywords: {
+                    description: "Array JSON string (e.g. [\\\"k1\\\",\\\"k2\\\"]) or comma-separated string",
+                    type: "string"
+                  },
+                  images: {
+                    type: "array",
+                    items: { type: "string", format: "binary" }
+                  }
+                },
+                required: ["name", "price", "category", "keywords"]
+              }
+            },
             "application/json": {
               schema: {
                 type: "object",
@@ -210,6 +230,25 @@ const swaggerSpec = {
         requestBody: {
           required: true,
           content: {
+            "multipart/form-data": {
+              schema: {
+                type: "object",
+                properties: {
+                  name: { type: "string" },
+                  price: { type: "number" },
+                  category: { type: "string" },
+                  keywords: {
+                    description: "Array JSON string (e.g. [\\\"k1\\\",\\\"k2\\\"]) or comma-separated string",
+                    type: "string"
+                  },
+                  images: {
+                    description: "If provided, replaces all existing images",
+                    type: "array",
+                    items: { type: "string", format: "binary" }
+                  }
+                }
+              }
+            },
             "application/json": {
               schema: {
                 type: "object",

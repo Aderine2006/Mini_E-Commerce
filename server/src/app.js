@@ -2,6 +2,7 @@ const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const swaggerUi = require("swagger-ui-express");
+const path = require("path");
 
 const { errorHandler } = require("./middleware/errorHandler");
 const { swaggerSpec } = require("./docs/swagger");
@@ -18,6 +19,8 @@ function createApp() {
   app.use(express.json({ limit: "1mb" }));
 
   app.get("/health", (req, res) => res.json({ ok: true }));
+
+  app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
   app.get("/docs.json", (req, res) => res.json(swaggerSpec));
   app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
