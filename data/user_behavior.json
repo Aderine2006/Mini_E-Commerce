@@ -1,0 +1,7 @@
+[
+  {
+    "userId": "123",
+    "viewedProducts": ["prod_01", "prod_11", "prod_21"],
+    "cartProducts": ["prod_01"]
+  }
+]

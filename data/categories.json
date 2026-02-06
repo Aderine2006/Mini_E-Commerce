@@ -1,0 +1,22 @@
+[
+  {
+    "id": "cat_01",
+    "name": "Electronics",
+    "description": "Electronic devices, gadgets, and accessories"
+  },
+  {
+    "id": "cat_02",
+    "name": "Food",
+    "description": "Packaged food, snacks, and beverages"
+  },
+  {
+    "id": "cat_03",
+    "name": "Clothing",
+    "description": "Apparel and fashion items for daily wear"
+  },
+  {
+    "id": "cat_04",
+    "name": "Cosmetics",
+    "description": "Beauty, skincare, and personal care products"
+  }
+]

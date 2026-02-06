@@ -1,0 +1,325 @@
+[
+  {
+    "id": "prod_01",
+    "name": "Laptop",
+    "category": "Electronics",
+    "price": 65000,
+    "keywords": ["laptop", "computer", "work", "portable", "office"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_01.png"
+  },
+  {
+    "id": "prod_02",
+    "name": "Smartphone",
+    "category": "Electronics",
+    "price": 45000,
+    "keywords": ["smartphone", "mobile", "android", "communication", "portable"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_02.png"
+  },
+  {
+    "id": "prod_03",
+    "name": "Wireless Earbuds",
+    "category": "Electronics",
+    "price": 3500,
+    "keywords": ["earbuds", "wireless", "audio", "music", "bluetooth"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_03.png"
+  },
+  {
+    "id": "prod_04",
+    "name": "Bluetooth Speaker",
+    "category": "Electronics",
+    "price": 4000,
+    "keywords": ["speaker", "audio", "bluetooth", "music", "portable"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_04.png"
+  },
+  {
+    "id": "prod_05",
+    "name": "Smart Watch",
+    "category": "Electronics",
+    "price": 7000,
+    "keywords": ["watch", "smartwatch", "fitness", "wearable", "health"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_05.png"
+  },
+  {
+    "id": "prod_06",
+    "name": "Power Bank",
+    "category": "Electronics",
+    "price": 2000,
+    "keywords": ["powerbank", "charging", "battery", "portable", "mobile"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_06.png"
+  },
+  {
+    "id": "prod_07",
+    "name": "USB-C Charging Cable",
+    "category": "Electronics",
+    "price": 500,
+    "keywords": ["cable", "charging", "usb-c", "accessory", "mobile"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_07.png"
+  },
+  {
+    "id": "prod_08",
+    "name": "Wireless Mouse",
+    "category": "Electronics",
+    "price": 1200,
+    "keywords": ["mouse", "wireless", "computer", "accessory", "office"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_08.png"
+  },
+  {
+    "id": "prod_09",
+    "name": "Keyboard",
+    "category": "Electronics",
+    "price": 1500,
+    "keywords": ["keyboard", "typing", "computer", "accessory", "office"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_09.png"
+  },
+  {
+    "id": "prod_10",
+    "name": "Laptop Stand",
+    "category": "Electronics",
+    "price": 1800,
+    "keywords": ["laptop", "stand", "ergonomic", "office", "accessory"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_10.png"
+  },
+
+  {
+    "id": "prod_11",
+    "name": "Chocolate Bar",
+    "category": "Food",
+    "price": 100,
+    "keywords": ["chocolate", "sweet", "snack", "food", "dessert"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_11.png"
+  },
+  {
+    "id": "prod_12",
+    "name": "Potato Chips",
+    "category": "Food",
+    "price": 50,
+    "keywords": ["chips", "snack", "salty", "food", "packaged"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_12.png"
+  },
+  {
+    "id": "prod_13",
+    "name": "Cookies",
+    "category": "Food",
+    "price": 120,
+    "keywords": ["cookies", "snack", "sweet", "biscuit", "food"],
+    "image": "Mini_E-Commerce\\data\\mages\\prod_13.png"
+  },
+  {
+    "id": "prod_14",
+    "name": "Instant Noodles",
+    "category": "Food",
+    "price": 60,
+    "keywords": ["noodles", "instant", "food", "quick", "snack"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_14.png"
+  },
+  {
+    "id": "prod_15",
+    "name": "Energy Drink",
+    "category": "Food",
+    "price": 150,
+    "keywords": ["energy", "drink", "beverage", "caffeine", "food"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_15.png"
+  },
+  {
+    "id": "prod_16",
+    "name": "Coffee Powder",
+    "category": "Food",
+    "price": 300,
+    "keywords": ["coffee", "beverage", "drink", "caffeine", "food"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_16.png"
+  },
+  {
+    "id": "prod_17",
+    "name": "Tea Bags",
+    "category": "Food",
+    "price": 200,
+    "keywords": ["tea", "beverage", "drink", "hot", "food"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_17.png"
+  },
+  {
+    "id": "prod_18",
+    "name": "Breakfast Cereal",
+    "category": "Food",
+    "price": 250,
+    "keywords": ["cereal", "breakfast", "food", "healthy", "grain"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_18.png"
+  },
+  {
+    "id": "prod_19",
+    "name": "Peanut Butter",
+    "category": "Food",
+    "price": 350,
+    "keywords": ["peanut", "butter", "spread", "food", "protein"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_19.png"
+  },
+  {
+    "id": "prod_20",
+    "name": "Protein Bar",
+    "category": "Food",
+    "price": 180,
+    "keywords": ["protein", "bar", "snack", "fitness", "food"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_20.png"
+  },
+
+  {
+    "id": "prod_21",
+    "name": "T-Shirt",
+    "category": "Clothing",
+    "price": 800,
+    "keywords": ["tshirt", "casual", "cotton", "clothing", "fashion"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_21.png"
+  },
+  {
+    "id": "prod_22",
+    "name": "Jeans",
+    "category": "Clothing",
+    "price": 1500,
+    "keywords": ["jeans", "denim", "casual", "clothing", "fashion"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_22.png"
+  },
+  {
+    "id": "prod_23",
+    "name": "Hoodie",
+    "category": "Clothing",
+    "price": 1800,
+    "keywords": ["hoodie", "winter", "casual", "clothing", "fashion"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_23.png"
+  },
+  {
+    "id": "prod_24",
+    "name": "Casual Shirt",
+    "category": "Clothing",
+    "price": 1200,
+    "keywords": ["shirt", "casual", "clothing", "fashion", "wear"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_24.png"
+  },
+  {
+    "id": "prod_25",
+    "name": "Jacket",
+    "category": "Clothing",
+    "price": 2500,
+    "keywords": ["jacket", "winter", "outerwear", "clothing", "fashion"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_25.png"
+  },
+  {
+    "id": "prod_26",
+    "name": "Kurti",
+    "category": "Clothing",
+    "price": 1400,
+    "keywords": ["kurti", "ethnic", "clothing", "fashion", "wear"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_26.png"
+  },
+  {
+    "id": "prod_27",
+    "name": "Dress",
+    "category": "Clothing",
+    "price": 2000,
+    "keywords": ["dress", "fashion", "clothing", "party", "wear"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_27.png"
+  },
+  {
+    "id": "prod_28",
+    "name": "Track Pants",
+    "category": "Clothing",
+    "price": 1100,
+    "keywords": ["trackpants", "sports", "casual", "clothing", "wear"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_28.png"
+  },
+  {
+    "id": "prod_29",
+    "name": "Shorts",
+    "category": "Clothing",
+    "price": 700,
+    "keywords": ["shorts", "casual", "summer", "clothing", "wear"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_29.png"
+  },
+  {
+    "id": "prod_30",
+    "name": "Scarf",
+    "category": "Clothing",
+    "price": 500,
+    "keywords": ["scarf", "accessory", "fashion", "clothing", "winter"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_30.png"
+  },
+
+  {
+    "id": "prod_31",
+    "name": "Lipstick",
+    "category": "Cosmetics",
+    "price": 600,
+    "keywords": ["lipstick", "makeup", "beauty", "cosmetics", "fashion"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_31.png"
+  },
+  {
+    "id": "prod_32",
+    "name": "Face Cream",
+    "category": "Cosmetics",
+    "price": 500,
+    "keywords": ["facecream", "skincare", "beauty", "cosmetics", "daily"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_32.png"
+  },
+  {
+    "id": "prod_33",
+    "name": "Sunscreen",
+    "category": "Cosmetics",
+    "price": 700,
+    "keywords": ["sunscreen", "skincare", "spf", "beauty", "cosmetics"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_33.png"
+  },
+  {
+    "id": "prod_34",
+    "name": "Face Wash",
+    "category": "Cosmetics",
+    "price": 300,
+    "keywords": ["facewash", "skincare", "cleanser", "beauty", "cosmetics"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_34.png"
+  },
+  {
+    "id": "prod_35",
+    "name": "Perfume",
+    "category": "Cosmetics",
+    "price": 1200,
+    "keywords": ["perfume", "fragrance", "beauty", "cosmetics", "scent"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_35.png"
+  },
+  {
+    "id": "prod_36",
+    "name": "Kajal",
+    "category": "Cosmetics",
+    "price": 250,
+    "keywords": ["kajal", "makeup", "beauty", "cosmetics", "eyes"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_36.png"
+  },
+  {
+    "id": "prod_37",
+    "name": "Foundation",
+    "category": "Cosmetics",
+    "price": 900,
+    "keywords": ["foundation", "makeup", "beauty", "cosmetics", "skin"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_37.png"
+  },
+  {
+    "id": "prod_38",
+    "name": "Moisturizer",
+    "category": "Cosmetics",
+    "price": 550,
+    "keywords": ["moisturizer", "skincare", "beauty", "cosmetics", "daily"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_38.png"
+  },
+  {
+    "id": "prod_39",
+    "name": "Hair Serum",
+    "category": "Cosmetics",
+    "price": 650,
+    "keywords": ["hair", "serum", "beauty", "cosmetics", "care"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_39.png"
+  },
+  {
+    "id": "prod_40",
+    "name": "Makeup Remover",
+    "category": "Cosmetics",
+    "price": 400,
+    "keywords": ["makeup", "remover", "skincare", "beauty", "cosmetics"],
+    "image": "Mini_E-Commerce\\data\\images\\prod_40.png"
+  }
+]

@@ -1,0 +1,105 @@
+{
+  "prod_01": {
+    "accessories": ["prod_08", "prod_09", "prod_10"],
+    "frequentlyBoughtTogether": ["prod_08"],
+    "similarItems": ["prod_02"]
+  },
+  "prod_02": {
+    "accessories": ["prod_06", "prod_07"],
+    "frequentlyBoughtTogether": ["prod_06"],
+    "similarItems": ["prod_01"]
+  },
+  "prod_03": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_04"],
+    "similarItems": ["prod_04"]
+  },
+  "prod_04": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_03"],
+    "similarItems": ["prod_03"]
+  },
+  "prod_05": {
+    "accessories": [],
+    "frequentlyBoughtTogether": [],
+    "similarItems": ["prod_02"]
+  },
+
+  "prod_11": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_12", "prod_15"],
+    "similarItems": ["prod_13"]
+  },
+  "prod_12": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_11"],
+    "similarItems": ["prod_13"]
+  },
+  "prod_13": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_11"],
+    "similarItems": ["prod_12"]
+  },
+  "prod_14": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_15"],
+    "similarItems": ["prod_18"]
+  },
+  "prod_15": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_14"],
+    "similarItems": ["prod_17"]
+  },
+
+  "prod_21": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_22"],
+    "similarItems": ["prod_24"]
+  },
+  "prod_22": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_21"],
+    "similarItems": ["prod_28"]
+  },
+  "prod_23": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_29"],
+    "similarItems": ["prod_25"]
+  },
+  "prod_24": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_22"],
+    "similarItems": ["prod_21"]
+  },
+  "prod_25": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_23"],
+    "similarItems": ["prod_23"]
+  },
+
+  "prod_31": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_37"],
+    "similarItems": ["prod_36"]
+  },
+  "prod_32": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_38"],
+    "similarItems": ["prod_33"]
+  },
+  "prod_33": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_32"],
+    "similarItems": ["prod_38"]
+  },
+  "prod_34": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_32"],
+    "similarItems": ["prod_38"]
+  },
+  "prod_35": {
+    "accessories": [],
+    "frequentlyBoughtTogether": ["prod_31"],
+    "similarItems": ["prod_39"]
+  }
+}
