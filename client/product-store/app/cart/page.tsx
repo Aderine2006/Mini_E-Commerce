@@ -2,6 +2,7 @@
 
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
+import { getImageUrl } from '@/lib/api';
 import Link from 'next/link';
 import { Loader2, Trash2, ArrowRight } from 'lucide-react';
 import { useEffect } from 'react';
@@ -50,13 +51,20 @@ export default function CartPage() {
                                     height: '80px',
                                     background: 'rgba(255,255,255,0.1)',
                                     borderRadius: 'var(--radius-sm)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '2rem',
-                                    color: 'var(--text-muted)'
+                                    overflow: 'hidden',
+                                    backgroundColor: 'white'
                                 }}>
-                                    {item.product.name.charAt(0)}
+                                    {item.product.images?.[0] ? (
+                                        <img
+                                            src={getImageUrl(item.product.images[0])}
+                                            alt={item.product.name}
+                                            style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '5px' }}
+                                        />
+                                    ) : (
+                                        <span style={{ fontSize: '2rem', color: 'var(--text-muted)' }}>
+                                            {item.product.name.charAt(0)}
+                                        </span>
+                                    )}
                                 </div>
 
                                 <div style={{ flex: 1 }}>
