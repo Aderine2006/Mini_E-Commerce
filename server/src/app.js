@@ -32,8 +32,8 @@ function createApp() {
     next();
   });
 
-  // Serve static files (before helmet) with proper Content-Type headers
-  app.use("/uploads", express.static(path.join(process.cwd(), "uploads"), {
+  // Serve static files from data/images directory
+  app.use("/uploads", express.static(path.join(process.cwd(), "../data/images"), {
     setHeaders: (res, filePath) => {
       res.setHeader("Cache-Control", "public, max-age=3600");
     }

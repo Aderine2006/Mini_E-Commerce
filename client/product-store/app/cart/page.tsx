@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function CartPage() {
-    const { cart, loading, addToCart } = useCart();
+    const { cart, loading, addToCart, updateQuantity, removeFromCart } = useCart();
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
 
@@ -68,7 +68,7 @@ export default function CartPage() {
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'rgba(255,255,255,0.1)', padding: '5px 10px', borderRadius: 'var(--radius-sm)' }}>
                                         <button
-                                            onClick={() => addToCart(item.product.id, -1)}
+                                            onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
                                             className="time-transition hover:text-primary"
                                             disabled={loading || item.quantity <= 1}
                                             style={{ padding: '5px' }}
@@ -77,7 +77,7 @@ export default function CartPage() {
                                         </button>
                                         <span style={{ fontWeight: 600 }}>{item.quantity}</span>
                                         <button
-                                            onClick={() => addToCart(item.product.id, 1)}
+                                            onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
                                             className="time-transition hover:text-primary"
                                             disabled={loading}
                                             style={{ padding: '5px' }}
@@ -87,7 +87,7 @@ export default function CartPage() {
                                     </div>
 
                                     <button
-                                        onClick={() => addToCart(item.product.id, -item.quantity)}
+                                        onClick={() => removeFromCart(item.product.id)}
                                         className="time-transition hover:text-red-500"
                                         title="Remove"
                                         disabled={loading}

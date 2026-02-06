@@ -39,4 +39,26 @@ async function getCartProductIds(userId) {
   return rows.map((r) => String(r.productId));
 }
 
-module.exports = { addToCart, getCart, getCartProductIds };
+async function updateItemQuantity({ userId, productId, quantity }) {
+  if (!Number.isInteger(quantity) || quantity <= 0) {
+    throw new HttpError(400, "quantity must be a positive integer");
+  }
+
+  const result = await run(
+    "UPDATE cart_items SET quantity = ? WHERE userId = ? AND productId = ?",
+    [quantity, userId, productId]
+  );
+
+  if (result.changes === 0) {
+    throw new HttpError(404, "Item not found in cart");
+  }
+}
+
+async function removeItem({ userId, productId }) {
+  await run(
+    "DELETE FROM cart_items WHERE userId = ? AND productId = ?",
+    [userId, productId]
+  );
+}
+
+module.exports = { addToCart, getCart, getCartProductIds, updateItemQuantity, removeItem };

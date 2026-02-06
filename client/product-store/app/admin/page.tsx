@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { api, API_URL } from '@/lib/api';
+import { api, API_URL, getImageUrl } from '@/lib/api';
 
 interface Product {
   id: number;
@@ -186,7 +186,7 @@ export default function AdminPage() {
                     ))
                   ) : (
                     form.images.map((src: any, i: number) => (
-                      <img key={i} src={src} alt={`Preview ${i}`} style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '8px', border: '1px solid var(--border-color)' }} />
+                      <img key={i} src={getImageUrl(src)} alt={`Preview ${i}`} style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '8px', border: '1px solid var(--border-color)' }} />
                     ))
                   )}
                 </div>
@@ -247,7 +247,7 @@ export default function AdminPage() {
                       <td style={{ padding: '15px', borderBottom: '1px solid var(--border-color)', width: 100 }}>
                         {((p as any).images && (p as any).images.length > 0) ? (
                           <img
-                            src={((p as any).images[0].startsWith('http') || (p as any).images[0].startsWith('data:')) ? (p as any).images[0] : `${API_URL}${(p as any).images[0].startsWith('/') ? (p as any).images[0] : `/${(p as any).images[0]}`}`}
+                            src={getImageUrl((p as any).images[0])}
                             alt={p.name}
                             style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 6 }}
                           />

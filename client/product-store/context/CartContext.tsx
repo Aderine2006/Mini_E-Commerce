@@ -10,6 +10,8 @@ interface CartContextType {
     cart: CartItem[];
     cartCount: number;
     addToCart: (productId: number | string, quantity?: number) => Promise<void>;
+    updateQuantity: (productId: number | string, quantity: number) => Promise<void>;
+    removeFromCart: (productId: number | string) => Promise<void>;
     loading: boolean;
 }
 
@@ -50,18 +52,41 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
         try {
             await api.cart.add(productId, quantity);
-            await fetchCart(); // Refresh cart
-            // Optionally show toast
+            await fetchCart();
         } catch (err) {
             console.error('Failed to add to cart', err);
-            throw err;
+        }
+    };
+
+    const updateQuantity = async (productId: number | string, quantity: number) => {
+        try {
+            if (quantity < 1) return; // Prevent 0 or negative via update
+            setLoading(true);
+            await api.cart.update(productId, quantity);
+            await fetchCart();
+        } catch (err) {
+            console.error('Failed to update cart', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const removeFromCart = async (productId: number | string) => {
+        try {
+            setLoading(true);
+            await api.cart.remove(productId);
+            await fetchCart();
+        } catch (err) {
+            console.error('Failed to remove from cart', err);
+        } finally {
+            setLoading(false);
         }
     };
 
     const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
     return (
-        <CartContext.Provider value={{ cart, cartCount, addToCart, loading }}>
+        <CartContext.Provider value={{ cart, cartCount, addToCart, updateQuantity, removeFromCart, loading }}>
             {children}
         </CartContext.Provider>
     );

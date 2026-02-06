@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, use } from 'react';
-import { api } from '@/lib/api';
+import { api, getImageUrl } from '@/lib/api';
 import { Product } from '@/types';
 import { Loader2, ArrowLeft, ShoppingCart, Share2, Heart } from 'lucide-react';
 import Link from 'next/link';
@@ -87,7 +87,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     overflow: 'hidden'
                 }}>
                     {product.images?.[0] ? (
-                        <img src={product.images[0]} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        <img src={getImageUrl(product.images[0])} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                     ) : (
                         product.name.charAt(0)
                     )}

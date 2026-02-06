@@ -1,7 +1,7 @@
 'use client';
 
 import { Product } from '@/types';
-import { API_URL } from '@/lib/api';
+import { API_URL, getImageUrl } from '@/lib/api';
 import Link from 'next/link';
 import { ShoppingCart, Loader2 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
@@ -51,18 +51,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                 overflow: 'hidden'
             }}>
                 {product.images?.[0] ? (
-                    (() => {
-                        const src = product.images[0];
-                        const isAbsolute = typeof src === 'string' && (src.startsWith('http') || src.startsWith('data:'));
-                        const url = isAbsolute ? src : `${API_URL}${src.startsWith('/') ? src : `/${src}`}`;
-                        return (
-                            <img
-                                src={url}
-                                alt={product.name}
-                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                            />
-                        );
-                    })()
+                    <img
+                        src={getImageUrl(product.images[0])}
+                        alt={product.name}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
                 ) : (
                     product.name.charAt(0)
                 )}

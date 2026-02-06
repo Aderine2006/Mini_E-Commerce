@@ -16,7 +16,7 @@ async function fetchAPI(endpoint: string, options: RequestOptions = {}) {
     // If body is FormData, let the browser set Content-Type (including boundary)
     if (options.body instanceof FormData) {
         // Remove Content-Type so browser sets multipart/form-data
-        delete headers['Content-Type'];
+        delete (headers as any)['Content-Type'];
     }
 
     const config = {
@@ -97,6 +97,15 @@ export const api = {
                 method: 'POST',
                 body: JSON.stringify({ productId, quantity })
             }),
+        update: (productId: number | string, quantity: number) =>
+            fetchAPI(`/cart/${productId}`, {
+                method: 'PUT',
+                body: JSON.stringify({ quantity })
+            }),
+        remove: (productId: number | string) =>
+            fetchAPI(`/cart/${productId}`, {
+                method: 'DELETE'
+            }),
         get: () => fetchAPI('/cart'),
     },
 
@@ -105,3 +114,23 @@ export const api = {
         get: (userId: number | string) => fetchAPI(`/recommendations?userId=${userId}`),
     },
 };
+
+export function getImageUrl(path: string | undefined): string | undefined {
+    if (!path) return undefined;
+    const isAbsolute = path.startsWith('http') || path.startsWith('data:');
+    if (isAbsolute) return path;
+
+    // Remove /api suffix if present to get base URL
+    // API_URL = http://localhost:4000 or http://localhost:4000/api
+    // If API_URL has /api, strip it. If not, use as is.
+    // If path starts with uploads/, we want {BASE_URL}/uploads/...
+
+    let baseUrl = API_URL;
+    if (baseUrl.endsWith('/api')) {
+        baseUrl = baseUrl.slice(0, -4);
+    }
+
+    // Ensure no double slash
+    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    return `${baseUrl}${cleanPath}`;
+}
