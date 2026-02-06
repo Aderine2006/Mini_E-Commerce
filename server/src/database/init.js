@@ -26,6 +26,10 @@ async function initDb() {
     "CREATE TABLE IF NOT EXISTS user_activity (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER NOT NULL, productId INTEGER NOT NULL, type TEXT NOT NULL CHECK(type IN ('viewed','cart_add')), createdAt TEXT NOT NULL DEFAULT (datetime('now')), FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE, FOREIGN KEY(productId) REFERENCES products(id) ON DELETE CASCADE)"
   );
 
+  await run(
+    "CREATE TABLE IF NOT EXISTS product_images (id INTEGER PRIMARY KEY AUTOINCREMENT, productId INTEGER NOT NULL, imagePath TEXT NOT NULL, sortOrder INTEGER NOT NULL DEFAULT 0, createdAt TEXT NOT NULL DEFAULT (datetime('now')), FOREIGN KEY(productId) REFERENCES products(id) ON DELETE CASCADE)"
+  );
+
   const adminEmail = process.env.ADMIN_EMAIL;
   const adminPassword = process.env.ADMIN_PASSWORD;
   const adminIdRaw = process.env.ADMIN_ID;

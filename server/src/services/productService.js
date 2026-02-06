@@ -7,6 +7,33 @@ function normalizeKeywords(keywords) {
   return "";
 }
 
+async function getImagesByProductIds(productIds) {
+  if (!productIds.length) return new Map();
+  const placeholders = productIds.map(() => "?").join(",");
+  const rows = await all(
+    `SELECT productId, imagePath FROM product_images WHERE productId IN (${placeholders}) ORDER BY sortOrder ASC, id ASC`,
+    productIds
+  );
+
+  const map = new Map();
+  for (const r of rows) {
+    const key = String(r.productId);
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(r.imagePath);
+  }
+  return map;
+}
+
+async function replaceProductImages(productId, imagePaths) {
+  await run("DELETE FROM product_images WHERE productId = ?", [productId]);
+  for (let i = 0; i < imagePaths.length; i += 1) {
+    await run(
+      "INSERT INTO product_images (productId, imagePath, sortOrder) VALUES (?, ?, ?)",
+      [productId, imagePaths[i], i]
+    );
+  }
+}
+
 function mapProductRow(row) {
   return {
     id: row.id,
@@ -14,6 +41,7 @@ function mapProductRow(row) {
     price: row.price,
     category: row.category,
     keywords: row.keywords ? row.keywords.split(",").map((k) => k.trim()).filter(Boolean) : [],
+    images: [],
     createdBy: row.createdBy,
     createdAt: row.createdAt
   };
@@ -23,7 +51,12 @@ async function listProducts() {
   const rows = await all(
     "SELECT id, name, price, category, keywords, createdBy, createdAt FROM products ORDER BY id DESC"
   );
-  return rows.map(mapProductRow);
+  const products = rows.map(mapProductRow);
+  const imageMap = await getImagesByProductIds(products.map((p) => p.id));
+  for (const p of products) {
+    p.images = imageMap.get(String(p.id)) || [];
+  }
+  return products;
 }
 
 async function getProductById(id) {
@@ -31,10 +64,14 @@ async function getProductById(id) {
     "SELECT id, name, price, category, keywords, createdBy, createdAt FROM products WHERE id = ?",
     [id]
   );
-  return row ? mapProductRow(row) : null;
+  if (!row) return null;
+  const product = mapProductRow(row);
+  const imageMap = await getImagesByProductIds([product.id]);
+  product.images = imageMap.get(String(product.id)) || [];
+  return product;
 }
 
-async function createProduct({ name, price, category, keywords, createdBy }) {
+async function createProduct({ name, price, category, keywords, createdBy, imagePaths = [] }) {
   const kw = normalizeKeywords(keywords);
   if (!kw) throw new HttpError(400, "keywords is required");
 
@@ -43,10 +80,14 @@ async function createProduct({ name, price, category, keywords, createdBy }) {
     [name, price, category, kw, createdBy]
   );
 
+  if (imagePaths.length) {
+    await replaceProductImages(result.lastID, imagePaths);
+  }
+
   return getProductById(result.lastID);
 }
 
-async function updateProduct(id, { name, price, category, keywords }) {
+async function updateProduct(id, { name, price, category, keywords, imagePaths }) {
   const existing = await getProductById(id);
   if (!existing) throw new HttpError(404, "Product not found");
 
@@ -63,6 +104,10 @@ async function updateProduct(id, { name, price, category, keywords }) {
     "UPDATE products SET name = ?, price = ?, category = ?, keywords = ? WHERE id = ?",
     [next.name, next.price, next.category, kw, id]
   );
+
+  if (Array.isArray(imagePaths)) {
+    await replaceProductImages(id, imagePaths);
+  }
 
   return getProductById(id);
 }
