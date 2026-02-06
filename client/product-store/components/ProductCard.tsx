@@ -29,7 +29,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     };
 
     return (
-        <div className="glass-panel" style={{
+        <div className="glass-panel product-card" style={{
             padding: '20px',
             display: 'flex',
             flexDirection: 'column',

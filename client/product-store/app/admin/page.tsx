@@ -249,7 +249,15 @@ export default function AdminPage() {
                           <img
                             src={getImageUrl((p as any).images[0])}
                             alt={p.name}
-                            style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 6 }}
+                            style={{
+                              width: 60,
+                              height: 60,
+                              objectFit: 'contain',
+                              borderRadius: 6,
+                              border: '1px solid var(--border-color)',
+                              padding: '2px',
+                              background: 'white'
+                            }}
                           />
                         ) : (
                           <div style={{ width: 80, height: 60, background: '#f3f3f3', borderRadius: 6 }} />
