@@ -6,18 +6,23 @@ import { Product } from '@/types';
 import ProductCard from '@/components/ProductCard';
 import { Loader2 } from 'lucide-react';
 
+import { useSearchParams } from 'next/navigation';
+
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search');
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchProducts(search || '');
+  }, [search]);
 
-  const fetchProducts = async () => {
+  const fetchProducts = async (query: string) => {
     try {
-      const data = await api.products.getAll();
+      setLoading(true);
+      const data = await api.products.getAll(query);
       setProducts(data.products || []);
     } catch (err) {
       setError('Failed to load products');

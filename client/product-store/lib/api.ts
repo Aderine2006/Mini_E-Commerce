@@ -61,7 +61,7 @@ export const api = {
 
     // Products
     products: {
-        getAll: () => fetchAPI('/products'),
+        getAll: (query?: string) => fetchAPI(`/products${query ? `?search=${encodeURIComponent(query)}` : ''}`),
         getOne: (id: number | string) => fetchAPI(`/products/${id}`),
         // Admin only
         create: (product: any) =>

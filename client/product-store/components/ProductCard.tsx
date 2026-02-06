@@ -4,6 +4,7 @@ import { Product } from '@/types';
 import Link from 'next/link';
 import { ShoppingCart, Loader2 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
 
 interface ProductCardProps {
@@ -60,19 +61,31 @@ export default function ProductCard({ product }: ProductCardProps) {
                     </h3>
                 </Link>
                 <p style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-main)' }}>
-                    ${product.price.toFixed(2)}
+                    ₹{product.price.toFixed(2)}
                 </p>
             </div>
 
-            <button
-                className="btn btn-outline"
-                style={{ marginTop: 'auto', width: '100%', justifyContent: 'center' }}
-                onClick={handleAddToCart}
-                disabled={adding}
-            >
-                {adding ? <Loader2 className="animate-spin" size={18} /> : <ShoppingCart size={18} />}
-                {adding ? 'Adding...' : 'Add to Cart'}
-            </button>
+            <div style={{ marginTop: 'auto', display: 'flex', gap: '10px' }}>
+                <button
+                    className="btn btn-outline"
+                    style={{ flex: 1, justifyContent: 'center' }}
+                    onClick={handleAddToCart}
+                    disabled={adding}
+                >
+                    {adding ? <Loader2 className="animate-spin" size={18} /> : <ShoppingCart size={18} />}
+                    {adding ? 'Adding...' : 'Add'}
+                </button>
+
+                {useAuth().user?.role === 'admin' && (
+                    <button
+                        className="btn btn-outline"
+                        style={{ flex: 1, justifyContent: 'center', borderColor: 'var(--primary)', color: 'var(--primary)' }}
+                        onClick={(e) => { e.preventDefault(); alert('Edit Product Feature (Admin Only)'); }}
+                    >
+                        Edit
+                    </button>
+                )}
+            </div>
         </div>
     );
 }

@@ -1,4 +1,5 @@
-import { NextResponse } from 'next/server';
+// Update imports to include NextRequest
+import { NextRequest, NextResponse } from 'next/server';
 
 const products = [
     {
@@ -39,7 +40,19 @@ const products = [
     }
 ];
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+    const searchParams = request.nextUrl.searchParams;
+    const query = searchParams.get('search')?.toLowerCase();
+
+    if (query) {
+        const filteredProducts = products.filter(p =>
+            p.name.toLowerCase().includes(query) ||
+            p.category.toLowerCase().includes(query) ||
+            p.keywords.some(k => k.toLowerCase().includes(query))
+        );
+        return NextResponse.json({ products: filteredProducts });
+    }
+
     return NextResponse.json({ products });
 }
 

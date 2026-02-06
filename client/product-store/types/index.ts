@@ -12,3 +12,9 @@ export interface CartItem {
     product: Product;
     quantity: number;
 }
+
+export interface User {
+    id: number;
+    email: string;
+    role: 'user' | 'admin';
+}

@@ -62,7 +62,7 @@ export default function CartPage() {
                                 <div style={{ flex: 1 }}>
                                     <h3>{item.product.name}</h3>
                                     <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{item.product.category}</p>
-                                    <p style={{ fontWeight: 600, color: 'var(--primary)' }}>${item.product.price.toFixed(2)}</p>
+                                    <p style={{ fontWeight: 600, color: 'var(--primary)' }}>₹{item.product.price.toFixed(2)}</p>
                                 </div>
 
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
@@ -105,12 +105,12 @@ export default function CartPage() {
 
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
                             <span style={{ color: 'var(--text-muted)' }}>Subtotal</span>
-                            <span style={{ fontWeight: 600 }}>${total.toFixed(2)}</span>
+                            <span style={{ fontWeight: 600 }}>₹{total.toFixed(2)}</span>
                         </div>
 
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '30px', fontSize: '1.2rem', fontWeight: 700 }}>
                             <span>Total</span>
-                            <span style={{ color: 'var(--primary)' }}>${total.toFixed(2)}</span>
+                            <span style={{ color: 'var(--primary)' }}>₹{total.toFixed(2)}</span>
                         </div>
 
                         <button className="btn btn-primary" style={{ width: '100%' }} onClick={() => alert('Checkout Simulation Successful!')}>

@@ -23,21 +23,21 @@ export default function RegisterPage() {
 
     return (
         <div className="flex-center" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div className="glass-panel" style={{ width: '100%', maxWidth: '400px', padding: '40px' }}>
-                <h1 style={{ textAlign: 'center', marginBottom: '8px', background: 'linear-gradient(to right, var(--primary), var(--accent))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            <div className="glass-panel" style={{ width: '100%', maxWidth: '400px', padding: '50px' }}>
+                <h1 style={{ textAlign: 'center', marginBottom: '15px', background: 'linear-gradient(to right, var(--primary), var(--accent))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                     Create Account
                 </h1>
-                <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '30px' }}>
+                <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '40px' }}>
                     Join the AI Product Store
                 </p>
 
                 {error && (
-                    <div style={{ background: 'rgba(255, 0, 0, 0.1)', color: 'red', padding: '10px', borderRadius: 'var(--radius-sm)', marginBottom: '20px', fontSize: '0.9rem' }}>
+                    <div style={{ background: 'rgba(255, 0, 0, 0.1)', color: 'red', padding: '10px', borderRadius: 'var(--radius-sm)', marginBottom: '30px', fontSize: '0.9rem' }}>
                         {error}
                     </div>
                 )}
 
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
                     <div>
                         <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: 500 }}>Email</label>
                         <input
