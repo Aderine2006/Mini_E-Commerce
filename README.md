@@ -1,6 +1,6 @@
 # Mini_E-Commerce
 
-# For running he server:
+# For running the server:
 - cd /server
 - npm i
 - npm run dev
